@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from "react-router-dom";
-import MovieCard from "./MovieCard";
+import styled from 'styled-components';
 
 const MovieList = props => {
   const [movies, setMovies] = useState([])
@@ -23,29 +23,35 @@ const MovieList = props => {
   return (
     <div className="movie-list">
       {movies.map(movie => (
-        <Link to={`/movies/${movie.id}`}><MovieDetails key={movie.id} movie={movie} /></Link>
+        <Link to={`/movies/${movie.id}`} style={{ textDecoration: 'none' }} key={movie.id} ><MovieDetails movie={movie} className="movie-details" /></Link>
       ))}
     </div>
   );
 }
 
+const Title = styled.h2`
+color: black;
+`;
+
+const Content = styled.div`
+color: black;
+`;
+
+const ActorsHeader = styled.h3`
+color: black;
+`;
+
 function MovieDetails({ movie }) {
   const { title, director, metascore, stars } = movie;
   return (
-    <div className="movie-card">
-      <h2>{title}</h2>
-      <div className="movie-director">
-        Director: <em>{director}</em>
-      </div>
-      <div className="movie-metascore">
-        Metascore: <strong>{metascore}</strong>
-      </div>
-      <h3>Actors</h3>
+    <div className="movie-card" style={{ backgroundColor: 'lightskyblue', width: '75%' }} >
+      <Title>{title}</Title>
+      <Content>Director: <em>{director}</em></Content>
+      <Content>Metascore: <strong>{metascore}</strong></Content>
+      <ActorsHeader>Actors</ActorsHeader>
 
       {stars.map(star => (
-        <div key={star} className="movie-star">
-          {star}
-        </div>
+        <Content key={star} >{star}</Content>
       ))}
     </div>
   );
