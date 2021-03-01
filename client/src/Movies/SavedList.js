@@ -1,4 +1,10 @@
 import React from 'react';
+import styled from "styled-components";
+
+const HomeButton = styled.button`
+padding: 5px 10px;
+background-color: lightskyblue;
+`;
 
 const SavedList = props => (
   <div className="saved-list">
@@ -6,7 +12,7 @@ const SavedList = props => (
     {props.list.map(movie => (
       <span className="saved-movie">{movie.title}</span>
     ))}
-    <div className="home-button">Home</div>
+    <a href="http://localhost:3000/"><HomeButton>Home</HomeButton></a>
   </div>
 );
 
